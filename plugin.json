@@ -1,0 +1,41 @@
+{
+  "id": "metahuman",
+  "kind": "plugin",
+  "version": "1.0.9",
+  "label": "MetaHuman",
+  "description": "MetaHuman for UEFN \u2014 create/edit in Creator, Mesh to MetaHuman, UEFN Export assemble, NPC spawn. Bundles the metahuman skill + thin MCP probe/inspect/assemble tools.",
+  "min_app_version": "1.0.0",
+  "default_enabled": false,
+  "secret_keys": [],
+  "contributes": {
+    "agent.tools": {
+      "category": "metahuman",
+      "intent_pattern": "\\b(meta\\s*human|metahuman|mesh\\s*to\\s*meta|mh\\s*npc|dna)\\b",
+      "plan_tools": [
+        "metahuman_capabilities",
+        "metahuman_list",
+        "metahuman_get_info",
+        "metahuman_can_assemble"
+      ]
+    },
+    "walkthrough": {
+      "id": "metahuman",
+      "title": "MetaHuman tools ready",
+      "auto_start": "first_enable",
+      "settings_tab": "Store",
+      "steps": [
+        {
+          "target": "settings.store.root",
+          "title": "MetaHuman tools ready",
+          "body": "MetaHuman MCP tools and skill are live. Ask about Creator, Mesh to MetaHuman, assemble, or NPC spawn wiring.",
+          "advance": "next",
+          "mode": "rect"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "entry": "backend",
+    "register": "register"
+  }
+}
