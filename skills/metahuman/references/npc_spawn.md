@@ -34,7 +34,7 @@ Verse AI loops: `skill_read_subskill("verse", "sys_npc_ai")`.
 |------|------|
 | **No physics asset** | Custom NPCs often spawn but **T-pose / slide without anim**. Assign a Physics Asset on the MH body skeletal mesh (create or duplicate a compatible one); save the mesh. |
 | **AnimPreset mixed skeletons** | Every idle / run / MoveForward (and attack if on the same preset path) `AnimSequence` must use the **same Skeleton**. Mismatched skeletons → validation errors like “Invalid skeleton used in animation sequence for MoveForward”. Retarget all clips onto the MH skeleton first. |
-| **Foot IK after retarget** | MH body may lack Mannequin IK virtual bones (`ik_foot_root`, `ik_foot_l`, `ik_foot_r`, hand IK equivalents). If feet skate or IK breaks, copy those bones from `SKM_Manny_Simple` (or project Mannequin) onto the MH skeleton — see `skill_read_subskill("animation", "retargeting")`. |
+| **Feet skate after retarget** | Rest-pose mismatch, not missing bones. Retarget with the Common `RTG_metahuman` / `IK_MetaHuman` assets when present, then correct the target retarget pose (`create_retarget_pose`, `set_retarget_pose_bone_rotation`, `set_retarget_pose_root_offset`) and re-bake — see `skill_read_subskill("animation", "retargeting")`. Never copy bones between skeletons. |
 | **Unassembled Character asset** | Use meshes/BP under `Content/MetaHumans/<Name>/` from **UEFN Export**, not the raw Creator Character asset. |
 
 ## MetaHuman-specific setup
@@ -73,7 +73,8 @@ Full patterns: `skill_read_subskill("verse", "sys_npc_ai")`.
 Creating `NPCCharacterDefinition` / modifier / AnimPreset / physics assets is
 primarily **editor asset authoring**. MCP can `search_assets`, `get_asset_info`,
 `get_dependencies`, `get_skeletal_mesh_info`, retarget/author sequences,
-`find_devices`, `wire_verse_device_ref`, and verify — do not invent a
+`find_devices`, `wire_verse_device_ref` (**one wire per turn** —
+`skill_read_subskill("uefn", "batch_commands")`), and verify — do not invent a
 “create NPCDef from MetaHuman” tool unless capabilities prove it.
 
 Prefer: duplicate a known-good definition → point mesh/preset/behavior slots at

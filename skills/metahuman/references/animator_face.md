@@ -30,8 +30,10 @@ MetaHuman Animator in UEFN also works with **Fortnite characters** and the
    (can reuse Mesh-to-MH Identity).
 3. Create a **MetaHuman Performance** (or equivalent Performance asset on your
    build); process the take offline.
-4. Apply the resulting animation to the MetaHuman (or FN character) Face AnimBP /
-   Control Rig channels your template exposes.
+4. Apply the resulting animation through the face Control Rig channels the
+   assembled MetaHuman exposes, then **bake it to an AnimSequence**
+   (`bake_sequence_to_anim`, or right-click the track → Bake Animation Sequence).
+   Baked clips are what ships; AnimBP editing is not the UEFN path.
 5. For cinematics: Sequencer + assembled MH. For gameplay NPCs: prefer short
    **baked** face loops (or audio) — continuous Live Link is editor/previs, not
    the island default.
@@ -41,8 +43,10 @@ MetaHuman Animator in UEFN also works with **Fortnite characters** and the
 - Face capture UI and Live Link Hub setup are **user/editor** steps — document
   and verify assets with `search_assets` / `get_asset_info`.
 - Do not claim depth solve succeeded without a Performance result asset on disk.
-- Body IK foot bones: if foot IK breaks after retarget, copy IK virtual bones from
-  Mannequin (`ik_foot_*`) onto the MH skeleton — see animation retargeting notes.
+- Body clips that look wrong after retarget are a **retarget pose** problem, not a
+  skeleton-surgery problem: use Common `RTG_metahuman` / `IK_MetaHuman` when
+  present, then `create_retarget_pose` + `set_retarget_pose_bone_rotation`. Never
+  copy bones between skeletons.
 
 ## Cross-links
 

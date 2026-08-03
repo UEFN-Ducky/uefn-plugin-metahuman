@@ -2,10 +2,10 @@
 source_plugin_id: metahuman
 name: metahuman
 description: "MetaHuman for UEFN — create and edit in MetaHuman Creator, Mesh to MetaHuman, assemble with UEFN Export, import/migrate from UE, wire NPC Spawner, face/body animation, LOD/groom performance"
-license: All Rights Reserved
+license: Ducky Source-Available License v1.0
 metadata:
   label: UEFN MetaHuman
-  version: 2
+  version: 3
   managed_by: uefn-ducky
   author: UEFN-Ducky
   copyright: Copyright 2026 UEFN-Ducky
@@ -13,6 +13,10 @@ metadata:
 ---
 
 # MetaHuman for UEFN — create, assemble, spawn
+
+**CRITICAL — editor mutations are SERIAL:** one heavy MCP call (`spawn_actor`,
+`wire_verse_device_ref`, `save_current_level`, …) → wait → next. Never parallel
+or same-turn multi. Details: `skill_read_subskill("uefn", "batch_commands")`.
 
 MetaHumans are **high-fidelity digital human NPCs** in UEFN. Author in the
 in-editor **MetaHuman Creator** (cloud Creator / Quixel Bridge for *new*
