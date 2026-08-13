@@ -34,7 +34,8 @@ See blender skill refs (do not invent denser “hero” meshes than UEFN needs):
 
 ## Import into UEFN
 
-1. `import_asset` / Content Browser into e.g. `/Game/MetaHumanSource/`.
+1. `get_project_info()` → `content_root`, then `import_asset` / Content Browser
+   into e.g. `{content_root}MetaHumanSource/` — never invent `/Game/MetaHumanSource/`.
 2. Mesh to MetaHuman — `mesh_to_metahuman`.
 3. Creator refine → Assemble UEFN → `npc_spawn`.
 

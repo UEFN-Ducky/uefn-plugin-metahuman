@@ -5,7 +5,7 @@ description: "MetaHuman for UEFN — create and edit in MetaHuman Creator, Mesh 
 license: Ducky Source-Available License v1.0
 metadata:
   label: UEFN MetaHuman
-  version: 3
+  version: 4
   managed_by: uefn-ducky
   author: UEFN-Ducky
   copyright: Copyright 2026 UEFN-Ducky
