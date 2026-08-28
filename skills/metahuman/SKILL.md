@@ -2,17 +2,19 @@
 source_plugin_id: metahuman
 name: metahuman
 description: "MetaHuman for UEFN — create and edit in MetaHuman Creator, Mesh to MetaHuman, assemble with UEFN Export, import/migrate from UE, wire NPC Spawner, face/body animation, LOD/groom performance"
-license: Ducky Source-Available License v1.0
+license: MIT
 metadata:
   label: UEFN MetaHuman
-  version: 4
+  version: 5
   managed_by: uefn-ducky
   author: UEFN-Ducky
-  copyright: Copyright 2026 UEFN-Ducky
-  allow_redistribute: false
+  copyright: Copyright 2026 Mindful Path Company, LLC
+  allow_redistribute: true
 ---
 
 # MetaHuman for UEFN — create, assemble, spawn
+
+**Epic UEFN MCP:** Settings → MCPs → **UEFN MCP (Epic)** (`unreal-mcp`). Bridge tools: `unreal__list_toolsets` → `unreal__describe_toolset` → `unreal__call_tool` (toolsets — not flat `unreal__create_entity`). Map: `skill_read_subskill("uefn", "epic_mcp")`. Ducky tools below stay for this skill's domain when Epic does not cover it.
 
 **CRITICAL — editor mutations are SERIAL:** one heavy MCP call (`spawn_actor`,
 `wire_verse_device_ref`, `save_current_level`, …) → wait → next. Never parallel
