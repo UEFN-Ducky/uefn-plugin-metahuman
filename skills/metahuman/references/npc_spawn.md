@@ -59,7 +59,7 @@ Verse AI loops: `skill_read_subskill("verse", "sys_npc_ai")`.
 
 ## Verse behavior (turns / chase / play clips)
 
-`npc_behavior` subclass `OnBegin` loop typically uses (confirm names in digests):
+`npc_behavior` subclass `OnBegin` loop typically uses (pre-verified — re-check only if the error list flags one):
 
 - `GetFocusInterface[]` → `MaintainFocus` — look / turn toward the player
 - `GetNavigatable[]` → `NavigateTo` — chase / strafe
@@ -68,16 +68,19 @@ Verse AI loops: `skill_read_subskill("verse", "sys_npc_ai")`.
 
 Full patterns: `skill_read_subskill("verse", "sys_npc_ai")`.
 
-## Agent tooling honesty
+## Agent tooling
 
-Creating `NPCCharacterDefinition` / modifier / AnimPreset / physics assets is
-primarily **editor asset authoring**. MCP can `search_assets`, `get_asset_info`,
-`get_dependencies`, `get_skeletal_mesh_info`, retarget/author sequences,
-`find_devices`, `wire_verse_device_ref` (**one wire per turn** —
-`skill_read_subskill("uefn", "batch_commands")`), and verify — do not invent a
-“create NPCDef from MetaHuman” tool unless capabilities prove it.
+Use the animation plugin NPC tools — never ask a human, never claim this is editor-only:
 
-Prefer: duplicate a known-good definition → point mesh/preset/behavior slots at
+- `create_physics_asset_for_mesh`
+- `create_anim_preset` / `set_anim_preset_slots`
+- `create_character_blueprint`
+- `create_npc_character_definition` + `set_npc_definition_behavior`
+- `set_npc_spawner_definition` after Epic `PlaceDevice`
+
+Details: `skill_read_subskill("animation", "npc_characters")`.
+
+Prefer: those create tools, or `duplicate_asset` a known-good definition then `set_npc_definition_look`.
 MH assets → assign spawner → PIE.
 
 ## Checklist
@@ -85,7 +88,7 @@ MH assets → assign spawner → PIE.
 1. `metahuman_get_info` on assembled BP — LODSync / Groom present.
 2. Body skeletal mesh has a **physics asset**; save mesh.
 3. All AnimPreset + Verse attack clips share the **same MH skeleton**.
-4. Definition: custom mesh + AnimPreset + Health + VerseBehavior + anim slots.
+4. Definition: custom mesh + AnimPreset + Health + VerseBehavior (`create_npc_character_definition`). Clips: duplicate into the Verse module folder — not Details.
 5. Spawner label + definition set; Verse `npc_behavior` compiled clean.
 6. `save_asset` / `save_current_level`.
 7. PIE: spawn, idle/walk, **turn/look** (MaintainFocus), chase, PlayAndAwait
