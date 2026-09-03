@@ -59,7 +59,7 @@ Verse AI loops: `skill_read_subskill("verse", "sys_npc_ai")`.
 
 ## Verse behavior (turns / chase / play clips)
 
-`npc_behavior` subclass `OnBegin` loop typically uses (pre-verified — re-check only if the error list flags one):
+`npc_behavior` subclass `OnBegin` loop typically uses (digest-verified — re-check only if the build flags one):
 
 - `GetFocusInterface[]` → `MaintainFocus` — look / turn toward the player
 - `GetNavigatable[]` → `NavigateTo` — chase / strafe

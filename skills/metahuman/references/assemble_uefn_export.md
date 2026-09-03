@@ -51,7 +51,7 @@ If `available` is false or assemble fails:
 ## Verify
 
 ```
-metahuman_list(directory="/Game/MetaHumans")
+metahuman_list(directory="/Game/MetaHumans")   # or {content_root}MetaHumans — omit directory to scan the project mount
 metahuman_get_info(asset_path="...")   # expect Blueprint / LODSync / Groom comps
 get_skeletal_mesh_info(...)            # body/face meshes after assemble
 ```

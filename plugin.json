@@ -1,7 +1,7 @@
 {
   "id": "metahuman",
   "kind": "plugin",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "label": "MetaHuman",
   "description": "MetaHuman for UEFN \u2014 create/edit in Creator, Mesh to MetaHuman, UEFN Export assemble, NPC spawn. Bundles the metahuman skill + thin MCP probe/inspect/assemble tools.",
   "min_app_version": "1.0.0",
