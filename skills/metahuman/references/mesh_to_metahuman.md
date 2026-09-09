@@ -6,6 +6,8 @@ metadata:
   load_condition: "Converting a scan, sculpt, or custom head/body mesh into a MetaHuman Identity"
 ---
 
+**Tool order (HARD):** 1) Official UEFN MCP first (`ducky_get_status` → `epic_mcp_online` → nested `unreal__*`). 2) Ducky listener second. 3) `execute_python` LAST — never a placement path, even if Epic and listener failed. Map: `skill_read_subskill("uefn", "epic_mcp")`.
+
 # Mesh to MetaHuman
 
 Turn a custom head/body (scan, sculpt, GenAI mesh, DCC export) into a

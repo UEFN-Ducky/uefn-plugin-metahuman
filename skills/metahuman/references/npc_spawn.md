@@ -6,6 +6,8 @@ metadata:
   load_condition: "Placing an assembled MetaHuman on a Fortnite island as an NPC with locomotion, custom clips, or Verse AI"
 ---
 
+**Tool order (HARD):** 1) Official UEFN MCP first (`ducky_get_status` → `epic_mcp_online` → nested `unreal__*`). 2) Ducky listener second. 3) `execute_python` LAST — never a placement path, even if Epic and listener failed. Map: `skill_read_subskill("uefn", "epic_mcp")`.
+
 # MetaHuman → NPC Spawner (+ custom anims + Verse)
 
 After **UEFN Export** assemble you have a character Blueprint + skeletal meshes.
