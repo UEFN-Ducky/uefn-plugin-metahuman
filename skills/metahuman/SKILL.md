@@ -5,7 +5,7 @@ description: "MetaHuman for UEFN — create and edit in MetaHuman Creator, Mesh 
 license: MIT
 metadata:
   label: UEFN MetaHuman
-  version: 6
+  version: 7
   managed_by: uefn-ducky
   author: UEFN-Ducky
   copyright: Copyright 2026 Mindful Path Company, LLC
@@ -14,11 +14,9 @@ metadata:
 
 # MetaHuman for UEFN — create, assemble, spawn
 
-**Tool order (HARD):** 1) Official UEFN MCP first — `ducky_get_status`; when `epic_mcp_online` use nested `unreal__*` (`unreal__list_toolsets` → `unreal__describe_toolset` → `unreal__call_tool`; 5+ ops → ProgrammaticToolset `execute_tool_script`). 2) Ducky listener second (Epic-offline gaps + Ducky-only tools listed in this skill). 3) `execute_python` LAST — never a placement/layout path, even if Epic and listener already failed. Never spawn, move, or assign materials. Map: `skill_read_subskill("uefn", "epic_mcp")`.
-
 **CRITICAL — editor mutations are SERIAL:** one heavy MCP call (`spawn_actor`,
 `wire_verse_device_ref`, `save_current_level`, …) → wait → next. Never parallel
-or same-turn multi. Details: `skill_read_subskill("uefn", "batch_commands")`.
+or same-turn multi. Details: SERIAL: one mutating/editor call per assistant message..
 
 MetaHumans are **high-fidelity digital human NPCs** in UEFN. Author in the
 in-editor **MetaHuman Creator** (cloud Creator / Quixel Bridge for *new*
@@ -121,3 +119,7 @@ Load with `skill_read_subskill("metahuman", "<id>")`:
   can drive Fortnite characters on the Character Device), not a swap-in player mesh.
 - Never invent DNA / bone names — read from `get_skeletal_mesh_info` /
   `list_skeleton_bones` after assemble.
+
+## Verify
+
+`metahuman_get_info` after assemble.
